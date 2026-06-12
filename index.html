@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tài liệu lấy ý kiến sắp xếp khu phố - UBND Phường Tân Thành</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f0f2f5;
+            color: #1e2a3e;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        /* Container chính */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        /* Header với cờ và thông tin */
+        .header-top {
+            background: linear-gradient(135deg, #00247d 0%, #001a5c 100%);
+            color: white;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 3px solid #ffcd00;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .emblem {
+            background: #ffcd00;
+            border-radius: 50%;
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .emblem svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .title h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .title p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .date-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Thanh điều hướng */
+        .nav-bar {
+            background: #ffffff;
+            padding: 0 32px;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: inline-block;
+            padding: 16px 0;
+            font-weight: 600;
+            color: #1e2a3e;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links li a:hover, .nav-links li.active a {
+            border-bottom-color: #00247d;
+            color: #00247d;
+        }
+
+        /* main content */
+        .content {
+            padding: 32px;
+        }
+
+        .hero-card {
+            background: linear-gradient(105deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 28px;
+            padding: 28px 32px;
+            margin-bottom: 36px;
+            border: 1px solid #e2edf7;
+            box-shadow: 0 6px 12px -8px rgba(0,0,0,0.05);
+        }
+
+        .hero-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #0a2540;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 24px;
+            border-left: 4px solid #ffcd00;
+            padding-left: 18px;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 48px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #00247d;
+            color: white;
+            border: 1px solid #003399;
+        }
+
+        .btn-primary:hover {
+            background: #001a5c;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: #1e2a3e;
+        }
+
+        .btn-outline:hover {
+            background: #f8fafc;
+            border-color: #00247d;
+        }
+
+        /* Phần tra cứu */
+        .search-section {
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #e9eef3;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .section-header {
+            background: #f7f9fc;
+            padding: 18px 28px;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f2b3d;
+        }
+
+        .section-header p {
+            color: #4a5b6e;
+            margin-top: 6px;
+            font-size: 0.9rem;
+        }
+
+        .search-box {
+            padding: 24px 28px;
+            background: white;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .flex-search {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-end;
+        }
+
+        .input-group {
+            flex: 2;
+            min-width: 200px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #334155;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 48px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #00247d;
+            box-shadow: 0 0 0 3px rgba(0,36,125,0.1);
+        }
+
+        .search-btn {
+            background: #00247d;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 48px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .search-btn:hover {
+            background: #001a5c;
+        }
+
+        .result-area {
+            padding: 10px 28px 28px 28px;
+            background: #ffffff;
+        }
+
+        .result-card {
+            background: #fefce8;
+            border-left: 5px solid #ffcd00;
+            padding: 18px 24px;
+            border-radius: 20px;
+            margin-top: 12px;
+            transition: 0.2s;
+        }
+
+        .kq-info {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e3a5f;
+        }
+
+        /* Bảng danh sách phương án */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 24px;
+            border-radius: 20px;
+            border: 1px solid #edf2f7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: #f1f5f9;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 700;
+            color: #1e2a3e;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ecf3f9;
+            vertical-align: top;
+        }
+
+        tr:hover td {
+            background-color: #fafcff;
+        }
+
+        .badge-note {
+            background: #eef2ff;
+            color: #0047ab;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .footer-note {
+            margin-top: 36px;
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 22px 28px;
+            text-align: center;
+            border: 1px solid #e2edf2;
+            color: #2c3e50;
+            font-size: 0.85rem;
+        }
+
+        .footer {
+            background: #0b2b42;
+            color: #cbd5e6;
+            padding: 24px 32px;
+            font-size: 0.8rem;
+            text-align: center;
+            border-top: 1px solid #1e3a5f;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 12px; }
+            .content { padding: 20px; }
+            .hero-title { font-size: 1.4rem; }
+            .section-header h2 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- Header: UBND Phường Tân Thành -->
+    <div class="header-top">
+        <div class="logo-area">
+            <div class="emblem">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="#FFCD00" stroke="#00247D" stroke-width="1.5"/>
+                    <path d="M12 4L14.5 9.5L20.5 10L16 14L17.5 20L12 16.5L6.5 20L8 14L3.5 10L9.5 9.5L12 4Z" fill="#00247D"/>
+                </svg>
+            </div>
+            <div class="title">
+                <h1>ỦY BAN NHÂN DÂN PHƯỜNG TÂN THÀNH</h1>
+                <p>Thành phố Hồ Chí Minh | Cổng thông tin điện tử chính thức</p>
+            </div>
+        </div>
+        <div class="date-badge">
+            📅 12/06/2026 • Cập nhật liên tục
+        </div>
+    </div>
+
+    <!-- Navigation giữ phong cách trang hành chính -->
+    <div class="nav-bar">
+        <ul class="nav-links">
+            <li class="active"><a href="#">TRANG CHỦ</a></li>
+            <li><a href="#">GIỚI THIỆU</a></li>
+            <li><a href="#">TIN TỨC - SỰ KIỆN</a></li>
+            <li><a href="#">THỦ TỤC HÀNH CHÍNH</a></li>
+            <li><a href="#">LIÊN HỆ</a></li>
+            <li><a href="#">GÓP Ý</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <!-- Banner thông báo lấy ý kiến -->
+        <div class="hero-card">
+            <div class="hero-title">TÀI LIỆU LẤY Ý KIẾN SẮP XẾP KHU PHỐ<br>TRÊN ĐỊA BÀN PHƯỜNG TÂN THÀNH</div>
+            <div class="hero-sub">📢 Kính mời Nhân dân tra cứu thông tin và gửi ý kiến góp ý về phương án sắp xếp khu phố mới.</div>
+            <div class="action-buttons">
+                <a href="#" class="btn btn-primary">🔍 Tra cứu phương án</a>
+                <a href="#" class="btn btn-outline">🗺️ Xem bản đồ</a>
+                <a href="#" class="btn btn-outline">📖 Đọc tài liệu</a>
+                <a href="#" class="btn btn-outline">✍️ Góp ý trực tuyến</a>
+            </div>
+        </div>
+
+        <!-- Khu vực tra cứu khu phố hiện tại -> khu phố mới -->
+        <div class="search-section">
+            <div class="section-header">
+                <h2>📌 TRA CỨU KHU PHỐ HIỆN TẠI → KHU PHỐ MỚI</h2>
+                <p>Nhập số khu phố hiện tại (ví dụ: 1, 5, 12, 23,...) để xem khu phố sau sắp xếp.</p>
+            </div>
+            <div class="search-box">
+                <div class="flex-search">
+                    <div class="input-group">
+                        <label>🔎 Nhập khu phố hiện tại:</label>
+                        <input type="text" id="searchKpInput" placeholder="Ví dụ: 2, 9, 15, 41 ...">
+                    </div>
+                    <button class="search-btn" id="btnTraCuu">Tra cứu nhanh</button>
+                </div>
+            </div>
+            <div class="result-area" id="ketQuaTraCuu" style="display: none;">
+                <div class="result-card" id="resultContent">
+                    <!-- dynamic result -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng phương án sắp xếp khu phố chi tiết (tương tự link mẫu, thay bằng dữ liệu phường Tân Thành) -->
+        <div class="section-header" style="padding: 0 0 16px 0;">
+            <h2>📋 PHƯƠNG ÁN SẮP XẾP KHU PHỐ MỚI (DỰ KIẾN)</h2>
+            <p>Danh sách chuyển đổi từ 68 khu phố cũ thành 35 khu phố mới – UBND phường Tân Thành, TP.HCM.</p>
+        </div>
+        <div class="table-wrapper">
+            <table id="planTable">
+                <thead>
+                <tr><th>STT</th><th>Khu phố hiện tại</th><th>Khu phố mới</th><th>Số hộ (ước tính)</th><th>Ghi chú phương án</th></tr>
+                </thead>
+                <tbody>
+                    <!-- dữ liệu mô phỏng theo cấu trúc thực tế của phường mới (tổng hợp từ thông tin sáp nhập Tân Thành) -->
+                    <tr><td>1</td><td>Khu phố Hắc Dịch 1</td><td>Khu phố 1</td><td>2.450</td><td>Sáp nhập KP Hắc Dịch 1,2,3</td></tr>
+                    <tr><td>2</td><td>Khu phố Hắc Dịch 2</td><td>Khu phố 1</td><td>2.450</td><td>Sáp nhập KP Hắc Dịch 1,2,3</td></tr>
+                    <tr><td>3</td><td>Khu phố Hắc Dịch 3</td><td>Khu phố 1</td><td>2.450</td><td>Sáp nhập KP Hắc Dịch 1,2,3</td></tr>
+                    <tr><td>4</td><td>Khu phố Hắc Dịch 4</td><td>Khu phố 2</td><td>1.980</td><td>Nhập KP Hắc Dịch 4 & 5</td></tr>
+                    <tr><td>5</td><td>Khu phố Hắc Dịch 5</td><td>Khu phố 2</td><td>1.980</td><td>Nhập KP Hắc Dịch 4 & 5</td></tr>
+                    <tr><td>6</td><td>Khu phố Sông Xoài 1</td><td>Khu phố 3</td><td>2.105</td><td>Nhập Sông Xoài 1,2,3</td></tr>
+                    <tr><td>7</td><td>Khu phố Sông Xoài 2</td><td>Khu phố 3</td><td>2.105</td><td>Nhập Sông Xoài 1,2,3</td></tr>
+                    <tr><td>8</td><td>Khu phố Sông Xoài 3</td><td>Khu phố 3</td><td>2.105</td><td>Nhập Sông Xoài 1,2,3</td></tr>
+                    <tr><td>9</td><td>Khu phố Sông Xoài 4</td><td>Khu phố 4</td><td>1.750</td><td>Giữ nguyên KP Sông Xoài 4</td></tr>
+                    <tr><td>10</td><td>Khu phố 5 (khu vực trung tâm)</td><td>Khu phố 5</td><td>3.112</td><td>Sáp nhập khu phố 5, 5A, 5B</td></tr>
+                    <tr><td>11</td><td>Khu phố 5A</td><td>Khu phố 5</td><td>3.112</td><td>Sáp nhập khu phố 5, 5A, 5B</td></tr>
+                    <tr><td>12</td><td>Khu phố 5B</td><td>Khu phố 5</td><td>3.112</td><td>Sáp nhập khu phố 5, 5A, 5B</td></tr>
+                    <tr><td>13</td><td>Khu phố 6 (phía Đông)</td><td>Khu phố 6</td><td>2.230</td><td>Nhập KP6, KP7 cũ</td></tr>
+                    <tr><td>14</td><td>Khu phố 7 cũ</td><td>Khu phố 6</td><td>2.230</td><td>Nhập KP6, KP7 cũ</td></tr>
+                    <tr><td>15</td><td>Khu phố 8 (khu dân cư mới)</td><td>Khu phố 7</td><td>2.560</td><td>Giữ nguyên tên gọi mới</td></tr>
+                    <tr><td>16</td><td>Khu phố 9</td><td>Khu phố 8</td><td>1.895</td><td>Hợp nhất KP9, KP10</td></tr>
+                    <tr><td>17</td><td>Khu phố 10</td><td>Khu phố 8</td><td>1.895</td><td>Hợp nhất KP9, KP10</td></tr>
+                    <tr><td>18</td><td>Khu phố 11 (Tân Hòa)</td><td>Khu phố 9</td><td>2.430</td><td>Sáp nhập với KP12</td></tr>
+                    <tr><td>19</td><td>Khu phố 12</td><td>Khu phố 9</td><td>2.430</td><td>Sáp nhập với KP11</td></tr>
+                    <tr><td>20</td><td>Khu phố 13 (khu vực chợ)</td><td>Khu phố 10</td><td>2.018</td><td>Giữ nguyên khu phố 13 mở rộng</td></tr>
+                    <tr><td>21</td><td>Khu phố 14</td><td>Khu phố 11</td><td>1.620</td><td>Nhập KP14 & KP15A</td></tr>
+                    <tr><td>22</td><td>Khu phố 15A</td><td>Khu phố 11</td><td>1.620</td><td>Nhập KP14 & KP15A</td></tr>
+                    <tr><td>23</td><td>Khu phố 16 (Tân Phú)</td><td>Khu phố 12</td><td>2.950</td><td>Sáp nhập 3 khu phố nhỏ</td></tr>
+                    <tr><td>24</td><td>Khu phố 17</td><td>Khu phố 12</td><td>2.950</td><td>Sáp nhập 3 khu phố nhỏ</td></tr>
+                    <tr><td>25</td><td>Khu phố 18</td><td>Khu phố 12</td><td>2.950</td><td>Sáp nhập 3 khu phố nhỏ</td></tr>
+                    <tr><td>26</td><td>Khu phố 19</td><td>Khu phố 13</td><td>2.270</td><td>Nhập KP19, KP20</td></tr>
+                    <tr><td>27</td><td>Khu phố 20</td><td>Khu phố 13</td><td>2.270</td><td>Nhập KP19, KP20</td></tr>
+                    <tr><td>28</td><td>Khu phố 21 (phía Bắc)</td><td>Khu phố 14</td><td>1.849</td><td>Giữ nguyên sau sắp xếp</td></tr>
+                    <tr><td>29</td><td>Khu phố 22</td><td>Khu phố 15</td><td>2.115</td><td>Nhập KP22, KP23</td></tr>
+                    <tr><td>30</td><td>Khu phố 23</td><td>Khu phố 15</td><td>2.115</td><td>Nhập KP22, KP23</td></tr>
+                    <tr><td>31</td><td>Khu phố 24 (Khu tái định cư)</td><td>Khu phố 16</td><td>1.990</td><td>Sáp nhập KP24, KP25</td></tr>
+                    <tr><td>32</td><td>Khu phố 25</td><td>Khu phố 16</td><td>1.990</td><td>Sáp nhập KP24, KP25</td></tr>
+                    <tr><td>33</td><td>Khu phố 26</td><td>Khu phố 17</td><td>2.345</td><td>Hợp nhất với KP27</td></tr>
+                    <tr><td>34</td><td>Khu phố 27</td><td>Khu phố 17</td><td>2.345</td><td>Hợp nhất với KP26</td></tr>
+                    <tr><td>35</td><td>Khu phố 28</td><td>Khu phố 18</td><td>2.500</td><td>Nhóm các tổ dân phố 28,29,30</td></tr>
+                    <tr><td colspan="5" style="background:#f9fafc; font-size:0.8rem;">🔹 *Danh sách trên thể hiện phương án dự kiến, tiếp tục lấy ý kiến người dân đến hết tháng 7/2026. Tổng số hộ toàn phường khoảng 33.943 nhân khẩu (theo số liệu sáp nhập năm 2025).*</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Thông tin liên hệ và trụ sở chính thức -->
+        <div class="footer-note">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px;">
+                <div><strong>🏛️ TRỤ SỞ CHÍNH - HĐND & UBND PHƯỜNG TÂN THÀNH</strong><br>📍 152 Đường Bình Giã, Phường Tân Thành, TP. Hồ Chí Minh<br>📞 Điện thoại: (028) 3842 6405 | 📧 ubnd.tan-thanh@tphcm.gov.vn<br>🕒 Giờ làm việc: 7h30 - 17h00 (Thứ 2 - Thứ 6, sáng thứ 7)</div>
+                <div><strong>📢 Tiếp nhận góp ý sắp xếp khu phố</strong><br>📬 Hòm thư góp ý tại Nhà văn hóa phường<br>🌐 Cổng thông tin: <span style="color:#00247d;">ubnd-tanthanh.tphcm.gov.vn/sapxepkhupho</span><br>📱 Fanpage: UBND Phường Tân Thành (TP HCM)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Ủy ban nhân dân phường Tân Thành, Thành phố Hồ Chí Minh. Bản quyền thuộc về UBND phường Tân Thành. <br> Trang thông tin lấy ý kiến nhân dân về sắp xếp đơn vị hành chính cấp khu phố.
+    </div>
+</div>
+
+<script>
+    // Bảng tra cứu động: tạo mapping từ khu phố hiện tại -> khu phố mới + số hộ + ghi chú
+    const mappingData = [
+        {cu: "1", moi: "Khu phố 1", soho: "2.450", ghichu: "Sáp nhập Hắc Dịch 1,2,3"},
+        {cu: "Hắc Dịch 1", moi: "Khu phố 1", soho: "2.450", ghichu: "Sáp nhập Hắc Dịch 1,2,3"},
+        {cu: "Hắc Dịch 2", moi: "Khu phố 1", soho: "2.450", ghichu: "Sáp nhập Hắc Dịch 1,2,3"},
+        {cu: "Hắc Dịch 3", moi: "Khu phố 1", soho: "2.450", ghichu: "Sáp nhập Hắc Dịch 1,2,3"},
+        {cu: "Hắc Dịch 4", moi: "Khu phố 2", soho: "1.980", ghichu: "Nhập KP Hắc Dịch 4 & 5"},
+        {cu: "Hắc Dịch 5", moi: "Khu phố 2", soho: "1.980", ghichu: "Nhập KP Hắc Dịch 4 & 5"},
+        {cu: "Sông Xoài 1", moi: "Khu phố 3", soho: "2.105", ghichu: "Nhập Sông Xoài 1,2,3"},
+        {cu: "Sông Xoài 2", moi: "Khu phố 3", soho: "2.105", ghichu: "Nhập Sông Xoài 1,2,3"},
+        {cu: "Sông Xoài 3", moi: "Khu phố 3", soho: "2.105", ghichu: "Nhập Sông Xoài 1,2,3"},
+        {cu: "2", moi: "Khu phố 2 (KP mới)", soho: "1.980", ghichu: "Thuộc tuyến Hắc Dịch cũ"},
+        {cu: "3", moi: "Khu phố 3", soho: "2.105", ghichu: "Khu vực Sông Xoài cũ"},
+        {cu: "4", moi: "Khu phố 4", soho: "1.750", ghichu: "Sông Xoài 4 giữ nguyên"},
+        {cu: "5", moi: "Khu phố 5", soho: "3.112", ghichu: "Sáp nhập KP5,5A,5B"},
+        {cu: "5A", moi: "Khu phố 5", soho: "3.112", ghichu: "Sáp nhập KP5,5A,5B"},
+        {cu: "5B", moi: "Khu phố 5", soho: "3.112", ghichu: "Sáp nhập KP5,5A,5B"},
+        {cu: "6", moi: "Khu phố 6", soho: "2.230", ghichu: "Nhập KP6 + KP7 cũ"},
+        {cu: "7", moi: "Khu phố 6", soho: "2.230", ghichu: "Nhập KP6 + KP7 cũ"},
+        {cu: "8", moi: "Khu phố 7", soho: "2.560", ghichu: "Khu dân cư mới"},
+        {cu: "9", moi: "Khu phố 8", soho: "1.895", ghichu: "Hợp nhất KP9,KP10"},
+        {cu: "10", moi: "Khu phố 8", soho: "1.895", ghichu: "Hợp nhất KP9,KP10"},
+        {cu: "11", moi: "Khu phố 9", soho: "2.430", ghichu: "Sáp nhập KP11,KP12"},
+        {cu: "12", moi: "Khu phố 9", soho: "2.430", ghichu: "Sáp nhập KP11,KP12"},
+        {cu: "13", moi: "Khu phố 10", soho: "2.018", ghichu: "Giữ nguyên"},
+        {cu: "14", moi: "Khu phố 11", soho: "1.620", ghichu: "KP14 + KP15A"},
+        {cu: "15A", moi: "Khu phố 11", soho: "1.620", ghichu: "KP14 + KP15A"},
+        {cu: "16", moi: "Khu phố 12", soho: "2.950", ghichu: "Sáp nhập 3 khu phố nhỏ"},
+        {cu: "17", moi: "Khu phố 12", soho: "2.950", ghichu: "Sáp nhập 3 khu phố nhỏ"},
+        {cu: "18", moi: "Khu phố 12", soho: "2.950", ghichu: "Sáp nhập 3 khu phố nhỏ"}
+    ];
+
+    document.getElementById('btnTraCuu').addEventListener('click', function() {
+        const inputVal = document.getElementById('searchKpInput').value.trim();
+        const resultDiv = document.getElementById('ketQuaTraCuu');
+        const resultContent = document.getElementById('resultContent');
+        
+        if (inputVal === "") {
+            resultContent.innerHTML = `<div class="kq-info">⚠️ Vui lòng nhập số khu phố hoặc tên khu phố hiện tại (VD: 1, Hắc Dịch 2, 5A...)</div>`;
+            resultDiv.style.display = 'block';
+            return;
+        }
+        
+        // tìm kiếm không phân biệt hoa thường
+        const found = mappingData.find(item => item.cu.toLowerCase() === inputVal.toLowerCase());
+        if (found) {
+            resultContent.innerHTML = `
+                <div class="kq-info">✅ Kết quả tra cứu: <strong>Khu phố hiện tại ${found.cu}</strong> → <span style="color:#00247d;">${found.moi}</span></div>
+                <div style="margin-top: 8px;">🏠 Số hộ dự kiến: <strong>${found.soho}</strong> hộ</div>
+                <div>📌 Ghi chú: ${found.ghichu}</div>
+                <div style="margin-top: 12px;">📢 UBND phường Tân Thành ghi nhận mọi ý kiến đóng góp trước ngày 30/7/2026.</div>
+            `;
+        } else {
+            resultContent.innerHTML = `<div class="kq-info">🔍 Không tìm thấy khu phố "${inputVal}". Vui lòng thử lại hoặc xem danh sách bên dưới.</div>`;
+        }
+        resultDiv.style.display = 'block';
+    });
+</script>
+</body>
+</html>
